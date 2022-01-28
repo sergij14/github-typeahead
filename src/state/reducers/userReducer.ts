@@ -10,17 +10,23 @@ interface UsersState {
   data: UserData | null;
 }
 
+enum ActionType {
+  SEARCH_USERS = "SEARCH_USERS",
+  SEARCH_USERS_SUCCESS = "SEARCH_USERS_SUCCESS",
+  SEARCH_USERS_ERROR = "SEARCH_USERS_ERROR",
+}
+
 interface SearchUsersAction {
-  type: "SEARCH_USERS";
+  type: ActionType.SEARCH_USERS;
 }
 
 interface SearchUsersSuccessAction {
-  type: "SEARCH_USERS_SUCCESS";
+  type: ActionType.SEARCH_USERS_SUCCESS;
   payload: UserData;
 }
 
 interface SearchUsersErrorAction {
-  type: "SEARCH_USERS_ERROR";
+  type: ActionType.SEARCH_USERS_ERROR;
   payload: string;
 }
 
@@ -40,14 +46,14 @@ export const usersReducer = (
   action: Action
 ): UsersState => {
   switch (action.type) {
-    case "SEARCH_USERS": {
+    case ActionType.SEARCH_USERS: {
       return { loading: true, error: null, data: null };
     }
-    case "SEARCH_USERS_SUCCESS": {
+    case ActionType.SEARCH_USERS_SUCCESS: {
       return { loading: false, error: null, data: action.payload };
     }
 
-    case "SEARCH_USERS_ERROR": {
+    case ActionType.SEARCH_USERS_ERROR: {
       return { loading: false, error: action.payload, data: null };
     }
 
