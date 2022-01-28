@@ -3,10 +3,12 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import { store } from "./state/store";
+import { store } from "./state";
+import { GlobalStyle } from "./styles";
 
 ReactDOM.render(
   <Provider store={store}>
+    <GlobalStyle />
     <App />
   </Provider>,
   document.getElementById("root")

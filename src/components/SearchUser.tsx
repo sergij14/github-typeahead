@@ -24,7 +24,6 @@ const SearchUser = () => {
 
   // using typed selector from custom hook to get the state
   const { data, error, loading } = useTypedSelector((state) => state.user);
-  console.log(data);
 
   return (
     <div>
