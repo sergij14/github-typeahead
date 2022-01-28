@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useActions } from "../hooks/useActions";
 
 const SearchUser = () => {
@@ -21,6 +22,10 @@ const SearchUser = () => {
     setTerm(e.target.value);
   };
 
+  const state = useSelector((state) => state);
+
+  console.log(state);
+
   return (
     <div>
       <input
@@ -29,6 +34,7 @@ const SearchUser = () => {
         placeholder="Search an user here..."
         onChange={onSearch}
       />
+      <div></div>
     </div>
   );
 };
