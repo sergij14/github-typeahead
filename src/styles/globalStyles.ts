@@ -13,9 +13,5 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.colors.primary}; 
-    min-height: 100vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
   }
 `;
