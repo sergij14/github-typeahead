@@ -7,7 +7,7 @@ const API_URL = "https://api.github.com/users/";
 
 export const searchUser = (term: string) => {
   
-  // using Dispatch and providing our Action type to have typed dispatch
+  // using Dispatch and providing Action type to have typed dispatch
   return async (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SEARCH_USER,
