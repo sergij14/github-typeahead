@@ -16,15 +16,15 @@ const SearchUser = () => {
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [term, searchUser]);
+  }, [term]); //eslint-disable-line
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTerm(e.target.value);
   };
 
-  const state = useTypedSelector((state) => state);
-
-  console.log(state);
+  // using typed selector from custom hook to get the state
+  const { data, error, loading } = useTypedSelector((state) => state.user);
+  console.log(data);
 
   return (
     <div>
