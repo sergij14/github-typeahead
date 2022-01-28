@@ -1,10 +1,12 @@
-import axios from "axios";
-import { ActionType } from "./types";
+import axios, { AxiosError } from "axios";
+import { Dispatch } from "redux";
+import { UserData } from "../reducers/types";
+import { Action, ActionType, ServerError } from "./types";
 
 const API_URL = process.env.REACT_APP_API_URL || "";
 
 export const searchUser = (term: string) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SEARCH_USER,
     });
@@ -14,7 +16,7 @@ export const searchUser = (term: string) => {
           text: term,
         },
       });
-      const userData = {
+      const userData: UserData = {
         login: data.login,
         avatar_url: data.avatar_url,
         html_url: data.html_url,
@@ -23,11 +25,14 @@ export const searchUser = (term: string) => {
         type: ActionType.SEARCH_USER_SUCCESS,
         payload: userData,
       });
-    } catch (err: any) {
-      dispatch({
-        type: ActionType.SEARCH_USER_ERROR,
-        payload: err.message,
-      });
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        const serverError = err as AxiosError<ServerError>;
+        if (serverError && serverError.response) {
+          return serverError.response.data;
+        }
+      }
+      return { error: "something went wrong!" };
     }
   };
 };
