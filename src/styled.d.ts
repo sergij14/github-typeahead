@@ -10,5 +10,11 @@ declare module "styled-components" {
       primaryDarker: string;
       secondaryDarker: string;
     };
+    breakPoints: {
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
+    };
   }
 }

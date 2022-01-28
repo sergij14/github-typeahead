@@ -7,4 +7,10 @@ export const theme: DefaultTheme = {
     secondary: "#FFEDED",
     secondaryDarker: "#e6d5d5",
   },
+  breakPoints: {
+    sm: "425px",
+    md: "768px",
+    lg: "964px",
+    xl: "1240px",
+  },
 };

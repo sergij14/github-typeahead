@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Input = styled.input`
@@ -15,6 +17,9 @@ export const Input = styled.input`
   &:focus {
     outline: 4px ${({ theme }) => theme.colors.primaryDarker} solid;
     background-color: ${({ theme }) => theme.colors.secondaryDarker};
+  }
+  @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
+    max-width: 500px;
   }
 `;
 
