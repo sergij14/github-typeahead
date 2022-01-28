@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { searchUser } from "../state/actions";
+import { useActions } from "../hooks/useActions";
 
 const SearchUser = () => {
   const [term, setTerm] = useState("");
 
-  const dispatch = useDispatch();
+  // destrtucturing needed action from the custom hook
+  const { searchUser } = useActions();
 
+  // action should be dispatched only after user stops typying
+  // using setTimeout to have some delay, not to send too many requests
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (term !== "") {
-        dispatch(searchUser(term));
-      }
+      if (term !== "") searchUser(term);
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [term, dispatch]);
+  }, [term, searchUser]);
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTerm(e.target.value);

@@ -26,4 +26,4 @@ export enum ActionType {
   SEARCH_USER_ERROR = "SEARCH_USER_ERROR",
 }
 
-export type ServerError = { errorMessage: string };
+

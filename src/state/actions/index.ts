@@ -1,7 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { Dispatch } from "redux";
 import { UserData } from "../reducers/types";
-import { Action, ActionType, ServerError } from "./types";
+import { Action, ActionType } from "./types";
 
 const API_URL = "https://api.github.com/users/";
 
@@ -21,14 +21,11 @@ export const searchUser = (term: string) => {
         type: ActionType.SEARCH_USER_SUCCESS,
         payload: userData,
       });
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const serverError = err as AxiosError<ServerError>;
-        if (serverError && serverError.response) {
-          return serverError.response.data;
-        }
-      }
-      return { error: "something went wrong!" };
+    } catch (err: any) {
+      dispatch({
+        type: ActionType.SEARCH_USER_ERROR,
+        payload: err.message,
+      });
     }
   };
 };
