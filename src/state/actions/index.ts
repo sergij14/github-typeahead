@@ -3,8 +3,7 @@ import { Dispatch } from "redux";
 import { UserData } from "../reducers/types";
 import { Action, ActionType, ServerError } from "./types";
 
-const API_URL =
-  process.env.REACT_APP_API_URL || "https://api.github.com/users/";
+const API_URL = "https://api.github.com/users/";
 
 export const searchUser = (term: string) => {
   return async (dispatch: Dispatch<Action>) => {
