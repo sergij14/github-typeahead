@@ -1,11 +1,5 @@
-import { Action } from "../actions/types";
+import { Action, ActionType } from "../actions/types";
 import { userState } from "./types";
-
-enum ActionType {
-  SEARCH_USER = "SEARCH_USER",
-  SEARCH_USER_SUCCESS = "SEARCH_USER_SUCCESS",
-  SEARCH_USER_ERROR = "SEARCH_USER_ERROR",
-}
 
 const initialState = {
   loading: false,
