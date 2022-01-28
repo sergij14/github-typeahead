@@ -1,5 +1,5 @@
 import React from "react";
-import SearchUser from "./SearchUser";
+import SearchUser from "./SearchUser/SearchUser";
 
 const App = () => {
   return (
