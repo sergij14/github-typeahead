@@ -34,7 +34,15 @@ const SearchUser = () => {
         placeholder="Search an user here..."
         onChange={onSearch}
       />
-      <div></div>
+      <div>
+        {loading && <p>Loading</p>}
+        {error && <p>{error}</p>}
+        <div>
+          {data?.login}
+          {data?.html_url}
+          {data?.avatar_url}
+        </div>
+      </div>
     </div>
   );
 };
