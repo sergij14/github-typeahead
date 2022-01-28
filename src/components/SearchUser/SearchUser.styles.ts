@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
+  overflow: visible;
+  margin: 0 auto;
   margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
+  @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
+    max-width: 500px;
+  }
 `;
 
 export const Input = styled.input`
@@ -18,12 +22,17 @@ export const Input = styled.input`
     outline: 4px ${({ theme }) => theme.colors.primaryDarker} solid;
     background-color: ${({ theme }) => theme.colors.secondaryDarker};
   }
-  @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
-    max-width: 500px;
-  }
 `;
 
-export const Data = styled.div``;
+export const Data = styled.div`
+  position: absolute;
+  background-color: red;
+  top: 5rem;
+  padding: 1rem;
+  z-index: 10;
+  width: 100%;
+  border-radius: 1rem;
+`;
 
 export const DataError = styled.p``;
 

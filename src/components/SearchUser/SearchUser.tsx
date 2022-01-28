@@ -20,17 +20,19 @@ const SearchUser = ({ loading, error, data, onSearch }: SearchUserType) => {
         placeholder="Search an user here..."
         onChange={onSearch}
       />
-      <Data>
-        {loading && <DataLoading>Loading</DataLoading>}
-        {error && <DataError>{error}</DataError>}
-        <UserData>
-          <UserName>{data?.login}</UserName>
-          <UserUrl>
-            <a href={data?.html_url}>{data?.html_url}</a>
-          </UserUrl>
-          <UserImage src={data?.avatar_url} alt={data?.login} />
-        </UserData>
-      </Data>
+      {(loading || error || data) && (
+        <Data>
+          {loading && <DataLoading>Loading</DataLoading>}
+          {error && <DataError>{error}</DataError>}
+          <UserData>
+            <UserName>{data?.login}</UserName>
+            <UserUrl>
+              <a href={data?.html_url}>{data?.html_url}</a>
+            </UserUrl>
+            <UserImage src={data?.avatar_url} alt={data?.login} />
+          </UserData>
+        </Data>
+      )}
     </Container>
   );
 };
