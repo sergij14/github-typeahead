@@ -25,8 +25,8 @@ const SearchUserContainer = () => {
 
   useOnClickOutside(containerRef, onOutsideClick);
 
-  // destrtucturing needed action from the custom hook
-  const { searchUser } = useActions();
+  // destrtucturing needed actions from the custom hook
+  const { searchUser, resetState } = useActions();
 
   // using typed selector from custom hook to get the state
   const state = useTypedSelector((state) => state.user);
@@ -35,7 +35,11 @@ const SearchUserContainer = () => {
   // using setTimeout to have some delay, not to send too many requests
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (term !== "") searchUser(term);
+      if (term !== "") {
+        searchUser(term);
+      } else {
+        resetState();
+      }
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);

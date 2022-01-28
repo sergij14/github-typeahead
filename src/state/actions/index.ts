@@ -6,7 +6,6 @@ import { Action, ActionType } from "./types";
 const API_URL = "https://api.github.com/users/";
 
 export const searchUser = (term: string) => {
-  
   // using Dispatch and providing Action type to have typed dispatch
   return async (dispatch: Dispatch<Action>) => {
     dispatch({
@@ -29,5 +28,11 @@ export const searchUser = (term: string) => {
         payload: err.message,
       });
     }
+  };
+};
+
+export const resetState = (): Action => {
+  return {
+    type: ActionType.RESET_STATE,
   };
 };

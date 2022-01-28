@@ -15,12 +15,17 @@ export const userReducer = (
     case ActionType.SEARCH_USER: {
       return { loading: true, error: null, data: null };
     }
+
     case ActionType.SEARCH_USER_SUCCESS: {
       return { loading: false, error: null, data: action.payload };
     }
 
     case ActionType.SEARCH_USER_ERROR: {
       return { loading: false, error: action.payload, data: null };
+    }
+
+    case ActionType.RESET_STATE: {
+      return { loading: false, error: null, data: null };
     }
 
     default: {
