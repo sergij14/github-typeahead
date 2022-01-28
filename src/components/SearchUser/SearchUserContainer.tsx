@@ -37,6 +37,7 @@ const SearchUserContainer = () => {
     setFocused(!focused);
   };
 
+  // setting the focused state when user clicks outside the searchbar
   const onOutsideClick = () => {
     setFocused((prevState) => {
       if (focused) {

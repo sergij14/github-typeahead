@@ -2,6 +2,9 @@ import { useEffect, RefObject } from "react";
 
 type Event = MouseEvent | TouchEvent;
 
+// custom hook for detecting the outside click
+// code is taken from: https://hashnode.com/post/useonclickoutside-custom-hook-to-detect-the-mouse-click-on-outside-typescript-ckrejmy3h0k5r91s18iu42t28
+
 const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,
   handler: (event: Event) => void
