@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useActions } from "../hooks/useActions";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 
 const SearchUser = () => {
   const [term, setTerm] = useState("");
@@ -22,7 +22,7 @@ const SearchUser = () => {
     setTerm(e.target.value);
   };
 
-  const state = useSelector((state) => state);
+  const state = useTypedSelector((state) => state);
 
   console.log(state);
 
