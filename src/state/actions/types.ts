@@ -1,4 +1,4 @@
-import { UserData } from "../reducers/types";
+import { UserState } from "../reducers/types";
 
 interface SearchuserAction {
   type: ActionType.SEARCH_USER;
@@ -6,12 +6,12 @@ interface SearchuserAction {
 
 interface SearchuserSuccessAction {
   type: ActionType.SEARCH_USER_SUCCESS;
-  payload: UserData;
+  payload: UserState['data'];
 }
 
 interface SearchuserErrorAction {
   type: ActionType.SEARCH_USER_ERROR;
-  payload: string;
+  payload: UserState['error'];
 }
 
 export type Action =
