@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
 import {
   Container,
   Data,
@@ -19,11 +17,9 @@ const SearchUser = ({
   data,
   onSearch,
   onFocus,
-  onOutsideClick,
   focused,
+  containerRef,
 }: SearchUserType) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(containerRef, onOutsideClick);
   return (
     <Container ref={containerRef}>
       <Input
