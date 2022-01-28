@@ -3,7 +3,8 @@ import { Dispatch } from "redux";
 import { UserData } from "../reducers/types";
 import { Action, ActionType, ServerError } from "./types";
 
-const API_URL = process.env.REACT_APP_API_URL || "";
+const API_URL =
+  process.env.REACT_APP_API_URL || "https://api.github.com/users/";
 
 export const searchUser = (term: string) => {
   return async (dispatch: Dispatch<Action>) => {
@@ -11,11 +12,7 @@ export const searchUser = (term: string) => {
       type: ActionType.SEARCH_USER,
     });
     try {
-      const { data } = await axios.get(API_URL, {
-        params: {
-          text: term,
-        },
-      });
+      const { data } = await axios.get(API_URL + term);
       const userData: UserData = {
         login: data.login,
         avatar_url: data.avatar_url,
