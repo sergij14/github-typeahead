@@ -7,7 +7,15 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  html {
+    font-size: 10px;
+  }
+
   body {
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primary}; 
+    min-height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

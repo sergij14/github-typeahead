@@ -1,11 +1,12 @@
 import React from "react";
 import SearchUserContainer from "../SearchUser/SearchUserContainer";
+import { AppContainer } from "./App.styles";
 
 const App = () => {
   return (
-    <div>
+    <AppContainer>
       <SearchUserContainer />
-    </div>
+    </AppContainer>
   );
 };
 
