@@ -1,10 +1,10 @@
 import React from "react";
-import SearchUser from "../SearchUser/SearchUser";
+import SearchUserContainer from "../SearchUser/SearchUserContainer";
 
 const App = () => {
   return (
     <div>
-      <SearchUser />
+      <SearchUserContainer />
     </div>
   );
 };

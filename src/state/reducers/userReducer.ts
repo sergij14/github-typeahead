@@ -1,5 +1,5 @@
 import { Action, ActionType } from "../actions/types";
-import { userState } from "./types";
+import { UserState } from "./types";
 
 const initialState = {
   loading: false,
@@ -8,9 +8,9 @@ const initialState = {
 };
 
 export const userReducer = (
-  state: userState = initialState,
+  state: UserState = initialState,
   action: Action
-): userState => {
+): UserState => {
   switch (action.type) {
     case ActionType.SEARCH_USER: {
       return { loading: true, error: null, data: null };

@@ -4,7 +4,7 @@ export interface UserData {
   html_url: string;
 }
 
-export interface userState {
+export interface UserState {
   loading: boolean;
   error: string | null;
   data: UserData | null;
