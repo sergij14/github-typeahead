@@ -10,10 +10,24 @@ interface UsersState {
   data: UserData | null;
 }
 
-interface Action {
-  type: string;
-  payload?: any;
+interface SearchUsersAction {
+  type: "SEARCH_USERS";
 }
+
+interface SearchUsersSuccessAction {
+  type: "SEARCH_USERS_SUCCESS";
+  payload: UserData;
+}
+
+interface SearchUsersErrorAction {
+  type: "SEARCH_USERS_ERROR";
+  payload: string;
+}
+
+type Action =
+  | SearchUsersAction
+  | SearchUsersErrorAction
+  | SearchUsersSuccessAction;
 
 const initialState = {
   loading: false,
