@@ -10,6 +10,11 @@ interface UsersState {
   data: UserData | null;
 }
 
+interface Action {
+  type: string;
+  payload?: any;
+}
+
 const initialState = {
   loading: false,
   error: null,
@@ -18,7 +23,7 @@ const initialState = {
 
 export const usersReducer = (
   state: UsersState = initialState,
-  action: any
+  action: Action
 ): UsersState => {
   switch (action.type) {
     case "SEARCH_USERS": {
@@ -29,7 +34,7 @@ export const usersReducer = (
     }
 
     case "SEARCH_USERS_ERROR": {
-      return { loading: false, error: action, data: action.payload };
+      return { loading: false, error: action.payload, data: null };
     }
 
     default: {
