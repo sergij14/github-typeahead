@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import {
   Container,
   Data,
@@ -11,16 +13,27 @@ import {
 } from "./SearchUser.styles";
 import { SearchUserType } from "./SearchUserContainer";
 
-const SearchUser = ({ loading, error, data, onSearch }: SearchUserType) => {
+const SearchUser = ({
+  loading,
+  error,
+  data,
+  onSearch,
+  onFocus,
+  onOutsideClick,
+  focused,
+}: SearchUserType) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(containerRef, onOutsideClick);
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Input
         autoFocus
+        onFocus={onFocus}
         type="text"
         placeholder="Search an user here..."
         onChange={onSearch}
       />
-      {(loading || error || data) && (
+      {focused && (loading || error || data) && (
         <Data>
           {loading && <DataLoading>Loading</DataLoading>}
           {error && <DataError>{error}</DataError>}

@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import SearchUser from "./SearchUser";
-import {UserState} from '../../state/reducers/types';
+import { UserState } from "../../state/reducers/types";
 
 // creating the type for props of SearchUser component
 export type SearchUserType = {
   onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onOutsideClick: () => void;
+  focused: boolean;
 } & UserState;
 
 const SearchUserContainer = () => {
   const [term, setTerm] = useState("");
+  const [focused, setFocused] = useState(false);
 
   // destrtucturing needed action from the custom hook
   const { searchUser } = useActions();
@@ -29,10 +33,31 @@ const SearchUserContainer = () => {
     setTerm(e.target.value);
   };
 
+  const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(!focused);
+  };
+
+  const onOutsideClick = () => {
+    setFocused((prevState) => {
+      if (focused) {
+        return !focused;
+      }
+      return prevState;
+    });
+  };
+
   // using typed selector from custom hook to get the state
   const state = useTypedSelector((state) => state.user);
 
-  return <SearchUser {...state} onSearch={onSearch} />;
+  const searchUserProps = {
+    ...state,
+    onSearch,
+    onFocus,
+    onOutsideClick,
+    focused,
+  };
+
+  return <SearchUser {...searchUserProps} />;
 };
 
 export default SearchUserContainer;
