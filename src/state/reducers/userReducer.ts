@@ -1,39 +1,11 @@
-interface UserData {
-  login: string;
-  avatar_url: string;
-  html_url: string;
-}
-
-interface UsersState {
-  loading: boolean;
-  error: string | null;
-  data: UserData | null;
-}
+import { Action } from "../actions/types";
+import { userState } from "./types";
 
 enum ActionType {
-  SEARCH_USERS = "SEARCH_USERS",
-  SEARCH_USERS_SUCCESS = "SEARCH_USERS_SUCCESS",
-  SEARCH_USERS_ERROR = "SEARCH_USERS_ERROR",
+  SEARCH_USER = "SEARCH_USER",
+  SEARCH_USER_SUCCESS = "SEARCH_USER_SUCCESS",
+  SEARCH_USER_ERROR = "SEARCH_USER_ERROR",
 }
-
-interface SearchUsersAction {
-  type: ActionType.SEARCH_USERS;
-}
-
-interface SearchUsersSuccessAction {
-  type: ActionType.SEARCH_USERS_SUCCESS;
-  payload: UserData;
-}
-
-interface SearchUsersErrorAction {
-  type: ActionType.SEARCH_USERS_ERROR;
-  payload: string;
-}
-
-type Action =
-  | SearchUsersAction
-  | SearchUsersErrorAction
-  | SearchUsersSuccessAction;
 
 const initialState = {
   loading: false,
@@ -41,19 +13,19 @@ const initialState = {
   data: null,
 };
 
-export const usersReducer = (
-  state: UsersState = initialState,
+export const userReducer = (
+  state: userState = initialState,
   action: Action
-): UsersState => {
+): userState => {
   switch (action.type) {
-    case ActionType.SEARCH_USERS: {
+    case ActionType.SEARCH_USER: {
       return { loading: true, error: null, data: null };
     }
-    case ActionType.SEARCH_USERS_SUCCESS: {
+    case ActionType.SEARCH_USER_SUCCESS: {
       return { loading: false, error: null, data: action.payload };
     }
 
-    case ActionType.SEARCH_USERS_ERROR: {
+    case ActionType.SEARCH_USER_ERROR: {
       return { loading: false, error: action.payload, data: null };
     }
 
