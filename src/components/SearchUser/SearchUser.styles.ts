@@ -44,7 +44,7 @@ export const Data = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.secondary};
   outline: 4px ${({ theme }) => theme.colors.primaryDarker} solid;
-  top: 5rem;
+  top: 5.5rem;
   padding: 1rem;
   z-index: 10;
   width: 100%;
