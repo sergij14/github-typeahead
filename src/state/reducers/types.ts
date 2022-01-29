@@ -4,6 +4,7 @@ export interface UserData {
   html_url: string;
   followers: number;
   public_repos: number;
+  name: string;
 }
 
 export interface UserState {

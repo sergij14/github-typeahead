@@ -20,6 +20,7 @@ export const searchUser = (term: string) => {
         html_url: data.html_url,
         followers: data.followers,
         public_repos: data.public_repos,
+        name: data.name,
       };
       dispatch({
         type: ActionType.SEARCH_USER_SUCCESS,
