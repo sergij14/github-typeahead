@@ -94,6 +94,7 @@ export const UserInfo = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   font-size: 1.4rem;
+  align-items: flex-start;
 `;
 
 export const UserName = styled.p`
@@ -101,13 +102,16 @@ export const UserName = styled.p`
   font-size: 1.6rem;
 `;
 
-export const UserURL = styled.span`
+export const UserURL = styled.button`
   margin-top: 0.5rem;
-  & a {
-    text-decoration: none;
-    background-color: ${({ theme }) => theme.colors.secondaryDarker};
-    padding: 0.5rem 0.8rem;
-    border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.secondaryDarker};
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 0;
+  opacity: 0.8;
+  &:focus,
+  &:active {
+    opacity: 1;
   }
   & a:hover {
     text-decoration: underline;
