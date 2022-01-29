@@ -9,7 +9,7 @@ import {
   UserName,
   UserUrl,
 } from "./SearchUser.styles";
-import { SearchUserType } from "./SearchUserContainer";
+import { SearchUserPropTypes } from "./SearchUser.types";
 
 const SearchUser = ({
   loading,
@@ -19,7 +19,7 @@ const SearchUser = ({
   onFocus,
   isVisible,
   containerRef,
-}: SearchUserType) => {
+}: SearchUserPropTypes) => {
   return (
     <Container ref={containerRef}>
       <Input

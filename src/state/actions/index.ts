@@ -1,9 +1,7 @@
-import axios from "axios";
 import { Dispatch } from "redux";
+import axios from "../../api";
 import { UserData } from "../reducers/types";
 import { Action, ActionType } from "./types";
-
-const API_URL = "https://api.github.com/users/";
 
 export const searchUser = (term: string) => {
   // using Dispatch and providing Action type to have typed dispatch
@@ -12,7 +10,7 @@ export const searchUser = (term: string) => {
       type: ActionType.SEARCH_USER,
     });
     try {
-      const { data } = await axios.get(API_URL + term);
+      const { data } = await axios.get(term);
       const userData: UserData = {
         login: data.login,
         avatar_url: data.avatar_url,

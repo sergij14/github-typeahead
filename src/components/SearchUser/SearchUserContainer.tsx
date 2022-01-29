@@ -2,16 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import SearchUser from "./SearchUser";
-import { UserState } from "../../state/reducers/types";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
-
-// creating the type for props of SearchUser component
-export type SearchUserType = {
-  onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus: () => void;
-  containerRef: React.RefObject<HTMLDivElement>;
-  isVisible: boolean;
-} & UserState;
 
 const SearchUserContainer = () => {
   const [term, setTerm] = useState("");
