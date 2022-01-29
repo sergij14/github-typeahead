@@ -10,6 +10,8 @@ export const searchUser = (term: string) => {
       type: ActionType.SEARCH_USER,
     });
     try {
+      console.log("fetching");
+
       const { data } = await axios.get(term);
       const userData: UserData = {
         login: data.login,
@@ -30,6 +32,8 @@ export const searchUser = (term: string) => {
 };
 
 export const resetState = (): Action => {
+  console.log("resetstate");
+
   return {
     type: ActionType.RESET_STATE,
   };

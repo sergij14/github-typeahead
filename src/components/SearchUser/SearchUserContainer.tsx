@@ -3,6 +3,7 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import SearchUser from "./SearchUser";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
+import { useFirstRender } from "../../hooks/useFirstRender";
 
 const SearchUserContainer = () => {
   const [term, setTerm] = useState("");
@@ -17,13 +18,11 @@ const SearchUserContainer = () => {
 
   // action should be dispatched only after user stops typying
   // using setTimeout to have some delay, not to send too many requests
+  const firstRender = useFirstRender(); //detecting the first render
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (term !== "") {
-        searchUser(term);
-      } else {
-        resetState();
-      }
+      if (term !== "") searchUser(term);
+      if (term === "" && !firstRender) resetState(); // preventing state reset on initial render'
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
