@@ -8,9 +8,9 @@ import useOnClickOutside from "../../hooks/useOnClickOutside";
 // creating the type for props of SearchUser component
 export type SearchUserType = {
   onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus: () => void;
   containerRef: React.RefObject<HTMLDivElement>;
-  focused: boolean;
+  isVisible: boolean;
 } & UserState;
 
 const SearchUserContainer = () => {
@@ -49,16 +49,22 @@ const SearchUserContainer = () => {
     setTerm(e.target.value);
   };
 
-  const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const onFocus = () => {
     setFocused(!focused);
   };
 
+  const isVisible = () => {
+    if (focused && (state.loading || state.error || state.data)) {
+      return true;
+    }
+    return false;
+  };
   const searchUserProps = {
     ...state,
     onSearch,
     onFocus,
     containerRef,
-    focused,
+    isVisible: isVisible(),
   };
 
   return <SearchUser {...searchUserProps} />;

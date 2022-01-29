@@ -17,19 +17,22 @@ const SearchUser = ({
   data,
   onSearch,
   onFocus,
-  focused,
+  isVisible,
   containerRef,
 }: SearchUserType) => {
+  console.log(isVisible);
+
   return (
     <Container ref={containerRef}>
       <Input
+        isVisible={isVisible}
         autoFocus
         onFocus={onFocus}
         type="text"
         placeholder="Search an user here..."
         onChange={onSearch}
       />
-      {focused && (loading || error || data) && (
+      {isVisible && (
         <Data>
           {loading && <DataLoading>Loading</DataLoading>}
           {error && <DataError>{error}</DataError>}

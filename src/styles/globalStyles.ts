@@ -13,5 +13,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.colors.primary}; 
+    a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+ }
   }
 `;
