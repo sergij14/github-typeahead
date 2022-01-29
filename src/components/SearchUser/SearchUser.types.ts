@@ -6,3 +6,7 @@ export type SearchUserPropTypes = {
   containerRef: React.RefObject<HTMLDivElement>;
   isVisible: boolean;
 } & UserState;
+
+export interface InputPropTypes {
+  isVisible: boolean;
+}

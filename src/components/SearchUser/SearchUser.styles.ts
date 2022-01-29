@@ -1,8 +1,5 @@
 import styled, { css } from "styled-components";
-
-interface InputProps {
-  isVisible: boolean;
-}
+import { InputPropTypes } from "./SearchUser.types";
 
 export const Container = styled.div`
   position: relative;
@@ -15,7 +12,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Input = styled.input<InputProps>`
+export const Input = styled.input<InputPropTypes>`
   background-color: ${({ theme }) => theme.colors.secondaryDarker};
   color: ${({ theme }) => theme.colors.primary};
   border: 0;
