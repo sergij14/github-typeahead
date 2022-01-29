@@ -7,6 +7,7 @@ import {
   UserImage,
   UserInfo,
   UserName,
+  UserURL,
 } from "./SearchUser.styles";
 import { SearchUserPropTypes } from "./SearchUser.types";
 
@@ -44,6 +45,11 @@ const SearchUser = ({
               <UserName>{data.login}</UserName>
               <p>Followers: {data.followers}</p>
               <p>Public Repos: {data.public_repos}</p>
+              <UserURL>
+                <a href={data.html_url} target="_blank" rel="noreferrer">
+                  Profile URL
+                </a>
+              </UserURL>
             </UserInfo>
           </UserData>
         )}

@@ -71,10 +71,25 @@ export const UserInfo = styled.div`
   gap: 0.5rem;
   flex: 0 0 75%;
   max-width: 75%;
+  font-size: 1.4rem;
 `;
 
 export const UserName = styled.p`
   font-weight: bold;
+  font-size: 1.6rem;
+`;
+
+export const UserURL = styled.span`
+  margin-top: 1rem;
+  & a {
+    text-decoration: none;
+    background-color: ${({ theme }) => theme.colors.secondaryDarker};
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.5rem;
+  }
+  & a:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const UserImage = styled.div`
