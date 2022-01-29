@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { IsVisibleConsumerType } from "./SearchUser.types";
 
 export const Container = styled.div`
@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin: 0 auto;
   margin-top: 1.5rem;
   @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
-    max-width: 500px;
+    max-width: 50rem;
   }
 `;
 
@@ -64,6 +64,29 @@ export const UserData = styled.div`
   gap: 1rem;
   align-items: flex-start;
   padding: 0.5rem 0;
+`;
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  transform: translateZ(0);
+  margin: 2.5rem auto;
+  border-top: 2px solid ${({ theme }) => theme.colors.primary};
+  border-right: 2px solid ${({ theme }) => theme.colors.primary};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+  border-left: 4px solid ${({ theme }) => theme.colors.primaryDarker};
+  background: transparent;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
 `;
 
 export const UserInfo = styled.div`

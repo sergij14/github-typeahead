@@ -3,6 +3,7 @@ import {
   Data,
   DataError,
   Input,
+  Spinner,
   UserData,
   UserImage,
   UserInfo,
@@ -33,7 +34,7 @@ const SearchUser = ({
       />
 
       <Data isVisible={isVisible}>
-        {loading && <p>Loading...</p>}
+        {loading && <Spinner />}
         {error && <DataError>{error}</DataError>}
         {data && (
           <UserData>
