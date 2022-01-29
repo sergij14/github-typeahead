@@ -22,7 +22,7 @@ const SearchUserContainer = () => {
   const { searchUser, resetState } = useActions();
 
   // using typed selector from custom hook to get the state
-  const state = useTypedSelector((state) => state.user);
+  const { data, error, loading } = useTypedSelector((state) => state.user);
 
   // action should be dispatched only after user stops typying
   // using setTimeout to have some delay, not to send too many requests
@@ -40,11 +40,11 @@ const SearchUserContainer = () => {
 
   // checking if the typeahead suggestions is active
   const checkVisible = useCallback(() => {
-    if (focused && (state.loading || state.error || state.data)) {
+    if (focused && (loading || error || data)) {
       return true;
     }
     return false;
-  }, [state.loading, state.error, state.data, focused]);
+  }, [loading, error, data, focused]);
 
   const isVisible = checkVisible();
 
@@ -64,7 +64,9 @@ const SearchUserContainer = () => {
   };
 
   const searchUserProps = {
-    ...state,
+    loading,
+    error,
+    data,
     onSearch,
     onFocus,
     containerRef,

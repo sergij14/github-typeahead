@@ -20,8 +20,6 @@ const SearchUser = ({
   isVisible,
   containerRef,
 }: SearchUserType) => {
-  console.log(isVisible);
-
   return (
     <Container ref={containerRef}>
       <Input
