@@ -19,51 +19,51 @@ const App = () => {
       </Logo>
       <SearchUserContainer />
       <MockContent>
-        <h2>Mocked Content</h2>
+        <h2>
+          The History of Git: The Road to Domination in Software Version Control
+        </h2>
 
-        <h4>Heading1</h4>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
-          quidem molestiae eveniet voluptates fuga accusamus voluptate dolorum?
-          Commodi iste animi non placeat est deleniti, recusandae earum
-          provident omnis soluta libero.t est deleniti, recusandae earum
-          provident omnis soluta libero.
+          In 2005, Linus Torvalds urgently needed a new version control system
+          to maintain the development of the Linux Kernel. So he went offline
+          for a week, wrote a revolutionary new system from scratch, and called
+          it Git. Fifteen years later, the platform is the undisputed leader in
+          a crowded field.
         </p>
 
-        <h4>Heading2</h4>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
-          quidem molestiae eveniet voluptates fuga accusamus voluptate dolorum?
-          Commodi iste animi non placeat est deleniti, recusandae earum
-          provident omnis soluta libero.a accusamus voluptate dolorum? Commodi
-          iste animi non placeat
+          Worldwide, huge numbers of start-ups, collectives and multinationals,
+          including Google and Microsoft, use Git to maintain the source code of
+          their software projects. Some host their own Git projects, others use
+          Git via commercial hosting companies such as GitHub (founded in 2007),
+          Bitbucket (founded in 2010) and GitLab (founded in 2011). The largest
+          of these, GitHub, has 40 million registered developers and was
+          acquired by Microsoft for a whopping $7.5 billion in 2018.
         </p>
 
-        <h4>Heading3</h4>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
-          quidem molestiae eveniet voluptates fuga accusamus voluptate dolorum?
-          Commodi iste animi non placeat est deleniti, recusandae earum
-          provident omnis soluta libero. molestiae eveniet voluptates fuga
-          accusamus
+          Git (and its competitors) is sometimes categorized as a version
+          control system (VCS), sometimes a source code management system (SCM),
+          and sometimes a revision control system (RCS). Torvalds thinks life’s
+          too short to distinguish between the definitions, so we won’t.
         </p>
 
-        <h4>Heading5</h4>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
-          quidem molestiae eveniet voluptates fuga accusamus voluptate dolorum?
-          Commodi iste animi non placeat est deleniti, recusandae earum
-          provident omnis soluta libero.consectetur adipisicing elit. Sequi,
-          quidem molestiae eveniet voluptat
+          Part of the appeal of Git is that it’s open source (like Linux and
+          Android). However, there are other open-source VCS, including
+          Concurrent Versions System (CVS), Subversion (SVN), Mercurial, and
+          Monotone, so that alone does not explain its ascendancy.
         </p>
 
-        <h4>Heading5</h4>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
-          quidem molestiae eveniet voluptates fuga accusamus voluptate dolorum?
-          Commodi iste animi non placeat est deleniti, recusandae earum
-          provident omnis soluta libero.et voluptates fuga accusamus voluptate
-          dolorum? Commodi iste animi non pla
+          The best indication of Git’s market dominance is a survey of
+          developers by Stack Overflow. This found that 88.4% of 74,298
+          respondents in 2018 used Git (up from 69.3% in 2015). The nearest
+          competitors were Subversion, with 16.6% penetration (down from 36.9%);
+          Team Foundation Version Control, with 11.3% (down from 12.2%); and
+          Mercurial, with 3.7% (down from 7.9%). In fact, so dominant has Git
+          become that the data scientists at Stack Overflow didn’t bother to ask
+          the question in their 2019 survey.
         </p>
       </MockContent>
     </AppContainer>
