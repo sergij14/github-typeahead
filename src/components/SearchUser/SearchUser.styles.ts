@@ -63,14 +63,13 @@ export const UserData = styled.div`
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  padding: 0.5rem 0;
 `;
 
 export const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  flex: 0 0 75%;
-  max-width: 75%;
   font-size: 1.4rem;
 `;
 
@@ -93,12 +92,17 @@ export const UserURL = styled.span`
 `;
 
 export const UserImage = styled.div`
-  flex: 0 0 25%;
-  max-width: 25%;
   & img {
     border-radius: 0.5rem;
     border: 1px ${({ theme }) => theme.colors.primary} solid;
     opacity: 0.9;
+    width: 8rem;
+    @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
+      width: 11rem;
+    }
+    @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
+      width: 13rem;
+    }
     &:hover {
       opacity: 1;
     }
