@@ -34,8 +34,8 @@ export const Input = styled.input<InputProps>`
   `}
   font-size: 1.6rem;
   width: 100%;
+  outline: 4px ${({ theme }) => theme.colors.primaryDarker} solid;
   &:focus {
-    outline: 4px ${({ theme }) => theme.colors.primaryDarker} solid;
     background-color: ${({ theme }) => theme.colors.secondary};
   }
 `;
