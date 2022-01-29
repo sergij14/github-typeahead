@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import SearchUser from "./SearchUser";
@@ -17,13 +17,6 @@ const SearchUserContainer = () => {
   const [term, setTerm] = useState("");
   const [focused, setFocused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // setting the focused state when user clicks outside the searchbar
-  const onOutsideClick = () => {
-    if (focused) setFocused(!focused);
-  };
-
-  useOnClickOutside(containerRef, onOutsideClick);
 
   // destrtucturing needed actions from the custom hook
   const { searchUser, resetState } = useActions();
@@ -45,26 +38,37 @@ const SearchUserContainer = () => {
     return () => clearTimeout(delayDebounceFn);
   }, [term]); //eslint-disable-line
 
+  // checking if the typeahead suggestions is active
+  const checkVisible = useCallback(() => {
+    if (focused && (state.loading || state.error || state.data)) {
+      return true;
+    }
+    return false;
+  }, [state.loading, state.error, state.data, focused]);
+
+  const isVisible = checkVisible();
+
+  // setting the focused state when user clicks outside the searchbar
+  const onOutsideClick = () => {
+    if (isVisible) setFocused(false);
+  };
+
+  useOnClickOutside(containerRef, onOutsideClick);
+
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTerm(e.target.value);
   };
 
   const onFocus = () => {
-    setFocused(!focused);
+    if (!isVisible) setFocused(true);
   };
 
-  const isVisible = () => {
-    if (focused && (state.loading || state.error || state.data)) {
-      return true;
-    }
-    return false;
-  };
   const searchUserProps = {
     ...state,
     onSearch,
     onFocus,
     containerRef,
-    isVisible: isVisible(),
+    isVisible,
   };
 
   return <SearchUser {...searchUserProps} />;
