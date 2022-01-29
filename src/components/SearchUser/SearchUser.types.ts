@@ -7,6 +7,6 @@ export type SearchUserPropTypes = {
   isVisible: boolean;
 } & UserState;
 
-export interface InputPropTypes {
+export interface IsVisibleConsumerType {
   isVisible: boolean;
 }

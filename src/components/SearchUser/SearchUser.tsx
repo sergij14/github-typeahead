@@ -29,26 +29,25 @@ const SearchUser = ({
         placeholder="Search an user here..."
         onChange={onSearch}
       />
-      {isVisible && (
-        <Data>
-          {loading && <p>Loading...</p>}
-          {error && <DataError>{error}</DataError>}
-          {data && (
-            <UserData>
-              <UserImage>
-                <a target="_blank" rel="noreferrer" href={data.html_url}>
-                  <img src={data.avatar_url} alt={data.login} />
-                </a>
-              </UserImage>
-              <UserInfo>
-                <UserName>{data.login}</UserName>
-                <p>Followers: {data.followers}</p>
-                <p>Public Repos: {data.public_repos}</p>
-              </UserInfo>
-            </UserData>
-          )}
-        </Data>
-      )}
+
+      <Data isVisible={isVisible}>
+        {loading && <p>Loading...</p>}
+        {error && <DataError>{error}</DataError>}
+        {data && (
+          <UserData>
+            <UserImage>
+              <a target="_blank" rel="noreferrer" href={data.html_url}>
+                <img src={data.avatar_url} alt={data.login} />
+              </a>
+            </UserImage>
+            <UserInfo>
+              <UserName>{data.login}</UserName>
+              <p>Followers: {data.followers}</p>
+              <p>Public Repos: {data.public_repos}</p>
+            </UserInfo>
+          </UserData>
+        )}
+      </Data>
     </Container>
   );
 };

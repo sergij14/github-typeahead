@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { InputPropTypes } from "./SearchUser.types";
+import { IsVisibleConsumerType } from "./SearchUser.types";
 
 export const Container = styled.div`
   position: relative;
@@ -12,7 +12,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Input = styled.input<InputPropTypes>`
+export const Input = styled.input<IsVisibleConsumerType>`
   background-color: ${({ theme }) => theme.colors.secondaryDarker};
   color: ${({ theme }) => theme.colors.primary};
   border: 0;
@@ -37,7 +37,16 @@ export const Input = styled.input<InputPropTypes>`
   }
 `;
 
-export const Data = styled.div`
+export const Data = styled.div<IsVisibleConsumerType>`
+  ${({ isVisible }) =>
+    isVisible
+      ? css`
+          display: block;
+        `
+      : css`
+          display: none;
+        `};
+
   position: absolute;
   background-color: ${({ theme }) => theme.colors.secondary};
   outline: 4px ${({ theme }) => theme.colors.primaryDarker} solid;
