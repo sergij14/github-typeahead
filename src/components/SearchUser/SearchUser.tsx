@@ -7,7 +7,6 @@ import {
   UserImage,
   UserInfo,
   UserName,
-  UserUrl,
 } from "./SearchUser.styles";
 import { SearchUserPropTypes } from "./SearchUser.types";
 
@@ -36,14 +35,15 @@ const SearchUser = ({
           {error && <DataError>{error}</DataError>}
           {data && (
             <UserData>
-              <UserImage src={data.avatar_url} alt={data.login} />
+              <UserImage>
+                <a target="_blank" rel="noreferrer" href={data.html_url}>
+                  <img src={data.avatar_url} alt={data.login} />
+                </a>
+              </UserImage>
               <UserInfo>
                 <UserName>{data.login}</UserName>
-                <UserUrl>
-                  <a target="_blank" rel="noreferrer" href={data.html_url}>
-                    {data.html_url}
-                  </a>
-                </UserUrl>
+                <p>Followers: {data.followers}</p>
+                <p>Public Repos: {data.public_repos}</p>
               </UserInfo>
             </UserData>
           )}

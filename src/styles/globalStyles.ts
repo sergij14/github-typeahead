@@ -16,11 +16,6 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.primary}; 
   }
 
-  a, a:hover, a:focus, a:active {
-      text-decoration: none;
-      color: inherit;
-  }
-
   img {
     display: block;
     width: 100%;

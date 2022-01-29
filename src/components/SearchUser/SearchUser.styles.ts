@@ -71,14 +71,15 @@ export const UserName = styled.p`
   font-weight: bold;
 `;
 
-export const UserImage = styled.img`
+export const UserImage = styled.div`
   flex: 0 0 25%;
   max-width: 25%;
-  border-radius: 0.5rem;
-`;
-
-export const UserUrl = styled.p`
-  & > a {
-    text-decoration: underline;
+  & img {
+    border-radius: 0.5rem;
+    border: 1px ${({ theme }) => theme.colors.primary} solid;
+    opacity: 0.9;
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
