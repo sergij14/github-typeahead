@@ -19,7 +19,7 @@ export const Input = styled.input<InputProps>`
   background-color: ${({ theme }) => theme.colors.secondaryDarker};
   color: ${({ theme }) => theme.colors.primary};
   border: 0;
-  padding: 1.4rem;
+  padding: 1.6rem 1.4rem;
   ${({ isVisible }) => `
     ${
       isVisible
@@ -59,12 +59,15 @@ export const DataError = styled.p`
 export const UserData = styled.div`
   display: flex;
   gap: 1rem;
+  align-items: flex-start;
 `;
 
 export const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.5rem;
+  flex: 0 0 75%;
+  max-width: 75%;
 `;
 
 export const UserName = styled.p`
@@ -73,6 +76,7 @@ export const UserName = styled.p`
 
 export const UserImage = styled.img`
   flex: 0 0 25%;
+  max-width: 25%;
   border-radius: 0.5rem;
 `;
 

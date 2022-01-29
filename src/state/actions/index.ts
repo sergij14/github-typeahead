@@ -17,8 +17,6 @@ export const searchUser = (term: string) => {
         login: data.login,
         avatar_url: data.avatar_url,
         html_url: data.html_url,
-        name: data.name,
-        location: data.location,
       };
       dispatch({
         type: ActionType.SEARCH_USER_SUCCESS,
