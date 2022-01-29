@@ -17,18 +17,15 @@ export const Input = styled.input<IsVisibleConsumerType>`
   color: ${({ theme }) => theme.colors.primary};
   border: 0;
   padding: 1.6rem 1.4rem;
-  ${({ isVisible }) => `
-    ${
-      isVisible
-        ? css`
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-          `
-        : css`
-            border-radius: 1rem;
-          `
-    }
-  `}
+  ${({ isVisible }) =>
+    isVisible
+      ? css`
+          border-top-left-radius: 1rem;
+          border-top-right-radius: 1rem;
+        `
+      : css`
+          border-radius: 1rem;
+        `};
   font-size: 1.6rem;
   width: 100%;
   outline: 4px ${({ theme }) => theme.colors.primaryDarker} solid;
