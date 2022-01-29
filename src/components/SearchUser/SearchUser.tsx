@@ -27,6 +27,7 @@ const SearchUser = ({
         autoFocus
         onFocus={onFocus}
         type="text"
+        maxLength={30}
         placeholder="Search an user here..."
         onChange={onSearch}
       />

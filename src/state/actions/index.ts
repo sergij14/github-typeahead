@@ -27,7 +27,7 @@ export const searchUser = (term: string) => {
     } catch (err: any) {
       dispatch({
         type: ActionType.SEARCH_USER_ERROR,
-        payload: err.message,
+        payload: `Something went wrong: ${err.response.data.message}`,
       });
     }
   };
