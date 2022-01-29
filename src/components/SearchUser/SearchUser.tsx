@@ -2,10 +2,10 @@ import {
   Container,
   Data,
   DataError,
-  DataLoading,
   Input,
   UserData,
   UserImage,
+  UserInfo,
   UserName,
   UserUrl,
 } from "./SearchUser.styles";
@@ -34,15 +34,21 @@ const SearchUser = ({
       />
       {isVisible && (
         <Data>
-          {loading && <DataLoading>Loading</DataLoading>}
+          {loading && <p>Loading...</p>}
           {error && <DataError>{error}</DataError>}
-          <UserData>
-            <UserName>{data?.login}</UserName>
-            <UserUrl>
-              <a href={data?.html_url}>{data?.html_url}</a>
-            </UserUrl>
-            <UserImage src={data?.avatar_url} alt={data?.login} />
-          </UserData>
+          {data && (
+            <UserData>
+              <UserImage src={data.avatar_url} alt={data.login} />
+              <UserInfo>
+                <UserName>{data.login}</UserName>
+                <p>{data.name}</p>
+                <p>{data.location}</p>
+                <UserUrl>
+                  <a href={data.html_url}>{data.html_url}</a>
+                </UserUrl>
+              </UserInfo>
+            </UserData>
+          )}
         </Data>
       )}
     </Container>

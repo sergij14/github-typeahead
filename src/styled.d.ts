@@ -9,6 +9,7 @@ declare module "styled-components" {
       secondary: string;
       primaryDarker: string;
       secondaryDarker: string;
+      error: string;
     };
     breakPoints: {
       sm: string;

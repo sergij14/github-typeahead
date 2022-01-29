@@ -6,6 +6,7 @@ export const theme: DefaultTheme = {
     primaryDarker: "#261717",
     secondary: "#FFEDED",
     secondaryDarker: "#e6d5d5",
+    error: "#ff3333",
   },
   breakPoints: {
     sm: "425px",

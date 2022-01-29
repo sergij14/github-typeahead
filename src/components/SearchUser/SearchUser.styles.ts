@@ -52,14 +52,32 @@ export const Data = styled.div`
   border-bottom-right-radius: 1rem;
 `;
 
-export const DataError = styled.p``;
+export const DataError = styled.p`
+  color: ${({ theme }) => theme.colors.error};
+`;
 
-export const DataLoading = styled.p``;
+export const UserData = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
 
-export const UserData = styled.div``;
+export const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+`;
 
-export const UserName = styled.p``;
+export const UserName = styled.p`
+  font-weight: bold;
+`;
 
-export const UserImage = styled.img``;
+export const UserImage = styled.img`
+  flex: 0 0 25%;
+  border-radius: 0.5rem;
+`;
 
-export const UserUrl = styled.p``;
+export const UserUrl = styled.p`
+  & > a {
+    text-decoration: underline;
+  }
+`;
