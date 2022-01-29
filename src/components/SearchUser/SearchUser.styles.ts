@@ -102,7 +102,7 @@ export const UserName = styled.p`
 `;
 
 export const UserURL = styled.span`
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   & a {
     text-decoration: none;
     background-color: ${({ theme }) => theme.colors.secondaryDarker};
@@ -119,11 +119,8 @@ export const UserImage = styled.div`
     border-radius: 0.5rem;
     border: 1px ${({ theme }) => theme.colors.primary} solid;
     opacity: 0.9;
-    width: 8rem;
+    width: 10rem;
     @media (min-width: ${({ theme }) => theme.breakPoints.sm}) {
-      width: 11rem;
-    }
-    @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
       width: 13rem;
     }
     &:hover {
