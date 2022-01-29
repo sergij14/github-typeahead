@@ -45,7 +45,7 @@ const SearchUser = ({
             </UserImage>
             <UserInfo>
               <UserName>
-                {data.login} ({data.name})
+                {data.login} {data.name && `(${data.name})`}
               </UserName>
               <p>Followers: {data.followers}</p>
               <p>Public Repos: {data.public_repos}</p>
