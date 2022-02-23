@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import SearchUser from "./SearchUser";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { useFirstRender } from "../../hooks/useFirstRender";
 
-const SearchUserContainer = () => {
+const useSearchUser = () => {
   const [term, setTerm] = useState("");
   const [focused, setFocused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,7 +52,7 @@ const SearchUserContainer = () => {
     if (!isVisible) setFocused(true);
   };
 
-  const searchUserProps = {
+  return {
     loading,
     error,
     data,
@@ -62,8 +61,6 @@ const SearchUserContainer = () => {
     containerRef,
     isVisible,
   };
-
-  return <SearchUser {...searchUserProps} />;
 };
 
-export default SearchUserContainer;
+export default useSearchUser;

@@ -1,5 +1,5 @@
 import React from "react";
-import SearchUserContainer from "../SearchUser/SearchUserContainer";
+import SearchUser from "../SearchUser/SearchUser";
 import {
   AppContainer,
   Logo,
@@ -17,7 +17,7 @@ const App = () => {
         </LogoSVG>
         <LogoText>github typeahead</LogoText>
       </Logo>
-      <SearchUserContainer />
+      <SearchUser />
       <MockContent>
         <h2>
           The History of Git: The Road to Domination in Software Version Control

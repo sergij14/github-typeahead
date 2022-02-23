@@ -10,17 +10,11 @@ import {
   UserName,
   UserURL,
 } from "./SearchUser.styles";
-import { SearchUserPropTypes } from "./SearchUser.types";
+import useSearchUser from "./useSearchUser";
 
-const SearchUser = ({
-  loading,
-  error,
-  data,
-  onSearch,
-  onFocus,
-  isVisible,
-  containerRef,
-}: SearchUserPropTypes) => {
+const SearchUser = () => {
+  const { loading, error, data, onSearch, onFocus, containerRef, isVisible } =
+    useSearchUser();
   return (
     <Container ref={containerRef}>
       <Input
