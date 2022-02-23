@@ -1,2 +1,2 @@
-# GitHub-Typeahead
-An app for sarching users in GitHub, created with React/Redux & TypeScript.
+# GitHub Typeahead
+An app for searching users in GitHub, created with React/Redux & TypeScript.
