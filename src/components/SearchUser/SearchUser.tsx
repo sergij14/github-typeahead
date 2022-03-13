@@ -27,31 +27,33 @@ const SearchUser = () => {
         onChange={onSearch}
       />
 
-      <Data isVisible={isVisible}>
-        {loading && <Spinner />}
-        {error && <DataError>{error}</DataError>}
-        {data && (
-          <UserData>
-            <UserImage>
-              <a target="_blank" rel="noreferrer" href={data.html_url}>
-                <img src={data.avatar_url} alt={data.login} />
-              </a>
-            </UserImage>
-            <UserInfo>
-              <UserName>
-                {data.login} {data.name && `(${data.name})`}
-              </UserName>
-              <p>Followers: {data.followers}</p>
-              <p>Public Repos: {data.public_repos}</p>
-              <UserURL>
-                <a href={data.html_url} target="_blank" rel="noreferrer">
-                  Profile URL
+      {isVisible && (
+        <Data>
+          {loading && <Spinner role="spinner" />}
+          {error && <DataError>{error}</DataError>}
+          {data && (
+            <UserData>
+              <UserImage>
+                <a target="_blank" rel="noreferrer" href={data.html_url}>
+                  <img src={data.avatar_url} alt={data.login} />
                 </a>
-              </UserURL>
-            </UserInfo>
-          </UserData>
-        )}
-      </Data>
+              </UserImage>
+              <UserInfo>
+                <UserName>
+                  {data.login} {data.name && `(${data.name})`}
+                </UserName>
+                <p>Followers: {data.followers}</p>
+                <p>Public Repos: {data.public_repos}</p>
+                <UserURL>
+                  <a href={data.html_url} target="_blank" rel="noreferrer">
+                    Profile URL
+                  </a>
+                </UserURL>
+              </UserInfo>
+            </UserData>
+          )}
+        </Data>
+      )}
     </Container>
   );
 };

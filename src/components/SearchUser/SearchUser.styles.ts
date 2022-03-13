@@ -34,16 +34,7 @@ export const Input = styled.input<IsVisibleConsumerType>`
   }
 `;
 
-export const Data = styled.div<IsVisibleConsumerType>`
-  ${({ isVisible }) =>
-    isVisible
-      ? css`
-          display: block;
-        `
-      : css`
-          display: none;
-        `};
-
+export const Data = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.secondary};
   outline: 4px ${({ theme }) => theme.colors.primaryDarker} solid;
