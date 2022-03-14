@@ -68,4 +68,23 @@ describe("SearchUser", () => {
       expect(alert).toBeInTheDocument();
     });
   });
+
+
+  it("data disappearance when search term is empty", async () => {
+    render(renderComponent(() => <SearchUser />, testStore));
+    const input = screen.getByPlaceholderText(/search an user here/i);
+
+    userEvent.type(input, "{selectall}value");
+    const text = await screen.findByText("sergij14 (sergi jaja)");
+    expect(text).toBeInTheDocument();
+    
+    userEvent.type(input, "{selectall}{del}");
+    
+    const userData = screen.queryByRole(/user-data/i);
+    await waitFor(() => {
+      expect(userData).not.toBeInTheDocument();
+    });
+
+  });
+
 });
