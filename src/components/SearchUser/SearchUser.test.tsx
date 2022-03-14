@@ -16,23 +16,24 @@ import { rest } from "msw";
 
 describe("SearchUser", () => {
   let testStore: StoreType;
+  let input: HTMLElement;
+
+  const getInput = () => screen.getByPlaceholderText(/search an user here/i);
+  const typeInField = (inputToType: HTMLElement) =>
+    userEvent.type(inputToType, "{selectall}value");
 
   beforeEach(() => {
     testStore = createTestStore();
+    render(renderComponent(() => <SearchUser />, testStore)); //eslint-disable-line
+    input = getInput();
   });
 
   it("renders a component", () => {
-    render(renderComponent(() => <SearchUser />, testStore));
-    expect(
-      screen.getByPlaceholderText(/search an user here/i)
-    ).toBeInTheDocument();
+    expect(input).toBeInTheDocument();
   });
 
   it("renders loading spinner and removes after fetching data", async () => {
-    render(renderComponent(() => <SearchUser />, testStore));
-    const input = screen.getByPlaceholderText(/search an user here/i);
-
-    userEvent.type(input, "{selectall}value");
+    typeInField(input);
 
     const spinner = await screen.findByRole("spinner");
     expect(spinner).toBeInTheDocument();
@@ -44,10 +45,7 @@ describe("SearchUser", () => {
   });
 
   it("renders fetched user data", async () => {
-    render(renderComponent(() => <SearchUser />, testStore));
-    const input = screen.getByPlaceholderText(/search an user here/i);
-
-    userEvent.type(input, "{selectall}value");
+    typeInField(input);
     const text = await screen.findByText("Followers: 45");
     expect(text).toBeInTheDocument();
   });
@@ -59,9 +57,7 @@ describe("SearchUser", () => {
       )
     );
 
-    render(renderComponent(() => <SearchUser />, testStore));
-    const input = screen.getByPlaceholderText(/search an user here/i);
-    userEvent.type(input, "{selectall}value");
+    typeInField(input);
 
     await waitFor(async () => {
       const alert = await screen.findByRole("alert");
@@ -69,22 +65,16 @@ describe("SearchUser", () => {
     });
   });
 
-
   it("data disappearance when search term is empty", async () => {
-    render(renderComponent(() => <SearchUser />, testStore));
-    const input = screen.getByPlaceholderText(/search an user here/i);
-
-    userEvent.type(input, "{selectall}value");
+    typeInField(input);
     const text = await screen.findByText("sergij14 (sergi jaja)");
     expect(text).toBeInTheDocument();
-    
+
     userEvent.type(input, "{selectall}{del}");
-    
+
     const userData = screen.queryByRole(/user-data/i);
     await waitFor(() => {
       expect(userData).not.toBeInTheDocument();
     });
-
   });
-
 });
