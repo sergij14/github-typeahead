@@ -2,7 +2,6 @@ import {
   render,
   screen,
   waitFor,
-  waitForElementToBeRemoved,
 } from "@testing-library/react";
 import SearchUser from "./SearchUser";
 import userEvent from "@testing-library/user-event";
@@ -65,7 +64,7 @@ describe("SearchUser", () => {
     });
   });
 
-  it("data disappearance when search term is empty", async () => {
+  it("removes data from dom when search term is empty", async () => {
     typeInField(input);
     const text = await screen.findByText("sergij14 (sergi jaja)");
     expect(text).toBeInTheDocument();
