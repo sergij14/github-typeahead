@@ -26,11 +26,26 @@ describe("SearchUser", () => {
     ).toBeInTheDocument();
   });
 
+  it("renders loading spinner and removes after fetching data", async () => {
+    render(renderComponent(() => <SearchUser />, testStore));
+    const input = screen.getByPlaceholderText(/search an user here/i);
+
+    userEvent.type(input, "{selectall}value");
+    
+    const spinner = await screen.findByRole("spinner");
+    expect(spinner).toBeInTheDocument();
+
+    const spinnerNull = screen.queryByRole("spinner");
+    await waitFor(() => {
+      expect(spinnerNull).not.toBeInTheDocument();
+    });
+  });
+
   it("renders data", async () => {
     render(renderComponent(() => <SearchUser />, testStore));
     const input = screen.getByPlaceholderText(/search an user here/i);
 
-    userEvent.type(input, "{selectall}sergsdgfsd");
+    userEvent.type(input, "{selectall}value");
     const text = await screen.findByText("Followers: 45");
     expect(text).toBeInTheDocument();
   });
