@@ -1,7 +1,7 @@
 import { rest } from "msw";
 
 export const handlers = [
-  rest.get("https://api.github.com/users/serg", (req, res, ctx) => {
+  rest.get("https://api.github.com/users/*", (req, res, ctx) => {
     console.log('logging');
     
     return res(
@@ -13,20 +13,6 @@ export const handlers = [
         public_repos: 33,
         name: "sergi jaja",
       })
-    );
-  }),
-  rest.get("http://localhost:3030/toppings", (req, res, ctx) => {
-    return res(
-      ctx.json([
-        {
-          name: "Cherries",
-          imagePath: "/images/cherries.png",
-        },
-        {
-          name: "Hot Fudge",
-          imagePath: "/images/hot-fudge.png",
-        },
-      ])
     );
   }),
 ];

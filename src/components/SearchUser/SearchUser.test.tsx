@@ -5,73 +5,34 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import SearchUser from "./SearchUser";
-import configureStore, { MockStoreEnhanced } from "redux-mock-store";
-import { Provider } from "react-redux";
-import { RootState } from "../../state";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle, theme } from "../../styles";
 import userEvent from "@testing-library/user-event";
-import { searchUser } from "../../state/actions";
-
-const initialState: RootState = {
-  user: {
-    data: {
-      login: "",
-      avatar_url: "",
-      html_url: "",
-      followers: 0,
-      public_repos: 0,
-      name: "",
-    },
-    error: null,
-    loading: false,
-  },
-};
+import {
+  createTestStore,
+  renderComponent,
+  StoreType,
+} from "../../utils/testUtils";
 
 describe("SearchUser", () => {
-  const mockStore = configureStore();
-
-  let store: MockStoreEnhanced<unknown, {}>;
-
-  const renderComponent = (render: () => JSX.Element) => {
-    return (
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <>{render()}</>
-        </ThemeProvider>
-      </Provider>
-    );
-  };
+  let testStore: StoreType;
 
   beforeEach(() => {
-    store = mockStore(initialState);
+    testStore = createTestStore();
   });
+
   it("renders a component", () => {
-    render(renderComponent(() => <SearchUser />));
+    render(renderComponent(() => <SearchUser />, testStore));
     expect(
       screen.getByPlaceholderText(/search an user here/i)
     ).toBeInTheDocument();
   });
 
-  it("renders pinner", async () => {
-    render(
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <SearchUser />
-        </ThemeProvider>
-      </Provider>
-    );
+  it("renders data", async () => {
+    render(renderComponent(() => <SearchUser />, testStore));
+    const input = screen.getByPlaceholderText(/search an user here/i);
 
-    const thunk = searchUser("serg");
-    const dispatch = jest.fn();
-
-    await thunk(dispatch);
-
-    const { calls } = dispatch.mock;
-
-    expect(calls).toHaveLength(2);
+    userEvent.type(input, "{selectall}sergsdgfsd");
+    const text = await screen.findByText("Followers: 45");
+    expect(text).toBeInTheDocument();
   });
 });
 
