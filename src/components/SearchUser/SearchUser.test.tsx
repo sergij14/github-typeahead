@@ -1,14 +1,10 @@
-import {
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import SearchUser from "./SearchUser";
-import userEvent from "@testing-library/user-event";
 import {
   createTestStore,
   renderComponent,
   StoreType,
+  typeInField,
 } from "../../utils/testUtils";
 import { server } from "../../mocks/server";
 import { rest } from "msw";
@@ -18,8 +14,6 @@ describe("SearchUser", () => {
   let input: HTMLElement;
 
   const getInput = () => screen.getByPlaceholderText(/search an user here/i);
-  const typeInField = (inputToType: HTMLElement) =>
-    userEvent.type(inputToType, "{selectall}value");
 
   beforeEach(() => {
     testStore = createTestStore();
@@ -32,7 +26,7 @@ describe("SearchUser", () => {
   });
 
   it("renders loading spinner and removes after fetching data", async () => {
-    typeInField(input);
+    typeInField(input, "{selectall}some-value");
 
     const spinner = await screen.findByRole("spinner");
     expect(spinner).toBeInTheDocument();
@@ -44,7 +38,8 @@ describe("SearchUser", () => {
   });
 
   it("renders fetched user data", async () => {
-    typeInField(input);
+    typeInField(input, "{selectall}some-value");
+
     const text = await screen.findByText("Followers: 45");
     expect(text).toBeInTheDocument();
   });
@@ -56,7 +51,7 @@ describe("SearchUser", () => {
       )
     );
 
-    typeInField(input);
+    typeInField(input, "{selectall}some-value");
 
     await waitFor(async () => {
       const alert = await screen.findByRole("alert");
@@ -65,11 +60,12 @@ describe("SearchUser", () => {
   });
 
   it("removes data from dom when search term is empty", async () => {
-    typeInField(input);
+    typeInField(input, "{selectall}some-value");
+
     const text = await screen.findByText("sergij14 (sergi jaja)");
     expect(text).toBeInTheDocument();
 
-    userEvent.type(input, "{selectall}{del}");
+    typeInField(input, "{selectall}{del}");
 
     const userData = screen.queryByRole(/user-data/i);
     await waitFor(() => {

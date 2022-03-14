@@ -2,8 +2,6 @@ import { rest } from "msw";
 
 export const handlers = [
   rest.get("https://api.github.com/users/*", (req, res, ctx) => {
-    console.log('logging');
-    
     return res(
       ctx.json({
         login: "sergij14",
