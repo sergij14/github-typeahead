@@ -30,7 +30,7 @@ const SearchUser = () => {
       {isVisible && (
         <Data>
           {loading && <Spinner role="spinner" />}
-          {error && <DataError>{error}</DataError>}
+          {error && <DataError role="alert">{error}</DataError>}
           {data && (
             <UserData role="user-data">
               <UserImage>

@@ -11,6 +11,8 @@ import {
   renderComponent,
   StoreType,
 } from "../../utils/testUtils";
+import { server } from "../../mocks/server";
+import { rest } from "msw";
 
 describe("SearchUser", () => {
   let testStore: StoreType;
@@ -31,7 +33,7 @@ describe("SearchUser", () => {
     const input = screen.getByPlaceholderText(/search an user here/i);
 
     userEvent.type(input, "{selectall}value");
-    
+
     const spinner = await screen.findByRole("spinner");
     expect(spinner).toBeInTheDocument();
 
@@ -41,7 +43,7 @@ describe("SearchUser", () => {
     });
   });
 
-  it("renders data", async () => {
+  it("renders fetched user data", async () => {
     render(renderComponent(() => <SearchUser />, testStore));
     const input = screen.getByPlaceholderText(/search an user here/i);
 
@@ -49,20 +51,21 @@ describe("SearchUser", () => {
     const text = await screen.findByText("Followers: 45");
     expect(text).toBeInTheDocument();
   });
+
+  it("shows error alert on server error", async () => {
+    server.resetHandlers(
+      rest.get("https://api.github.com/users/*", (req, res, ctx) =>
+        res(ctx.status(500))
+      )
+    );
+
+    render(renderComponent(() => <SearchUser />, testStore));
+    const input = screen.getByPlaceholderText(/search an user here/i);
+    userEvent.type(input, "{selectall}value");
+
+    await waitFor(async () => {
+      const alert = await screen.findByRole("alert");
+      expect(alert).toBeInTheDocument();
+    });
+  });
 });
-
-// ERROR CASE
-
-// test("handles error for scoops and toppings routes", async () => {
-//   server.resetHandlers(
-//     rest.get("http://3030/scoops", (req, res, ctx) => res(ctx.status(404))),
-//     rest.get("http://3030/toppings", (req, res, ctx) => res(ctx.status(404)))
-//   );
-
-//   render(<OrderEntry />);
-
-//   await waitFor(async () => {
-//     const alerts = await screen.findAllByRole("alert");
-//     expect(alerts).toHaveLength(2);
-//   }); // await and findBy was not enough
-// });
