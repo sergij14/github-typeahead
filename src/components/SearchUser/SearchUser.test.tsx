@@ -11,6 +11,7 @@ import { RootState } from "../../state";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, theme } from "../../styles";
 import userEvent from "@testing-library/user-event";
+import { searchUser } from "../../state/actions";
 
 const initialState: RootState = {
   user: {
@@ -54,10 +55,38 @@ describe("SearchUser", () => {
   });
 
   it("renders pinner", async () => {
-    render(renderComponent(() => <SearchUser />));
-    const input = screen.getByPlaceholderText(/search an user here/i);
-    userEvent.type(input, "{selectall}some value");
+    render(
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <SearchUser />
+        </ThemeProvider>
+      </Provider>
+    );
 
-    expect(input).toHaveValue("some value");
+    const thunk = searchUser("serg");
+    const dispatch = jest.fn();
+
+    await thunk(dispatch);
+
+    const { calls } = dispatch.mock;
+
+    expect(calls).toHaveLength(2);
   });
 });
+
+// ERROR CASE
+
+// test("handles error for scoops and toppings routes", async () => {
+//   server.resetHandlers(
+//     rest.get("http://3030/scoops", (req, res, ctx) => res(ctx.status(404))),
+//     rest.get("http://3030/toppings", (req, res, ctx) => res(ctx.status(404)))
+//   );
+
+//   render(<OrderEntry />);
+
+//   await waitFor(async () => {
+//     const alerts = await screen.findAllByRole("alert");
+//     expect(alerts).toHaveLength(2);
+//   }); // await and findBy was not enough
+// });

@@ -32,7 +32,7 @@ const SearchUser = () => {
           {loading && <Spinner role="spinner" />}
           {error && <DataError>{error}</DataError>}
           {data && (
-            <UserData>
+            <UserData role="user-data">
               <UserImage>
                 <a target="_blank" rel="noreferrer" href={data.html_url}>
                   <img src={data.avatar_url} alt={data.login} />
