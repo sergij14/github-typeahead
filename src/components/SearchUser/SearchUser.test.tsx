@@ -38,10 +38,12 @@ describe("SearchUser", () => {
   });
 
   it("renders fetched user data", async () => {
-    typeInField(input, "{selectall}some-value");
+    typeInField(input, "{selectall}sergij14");
 
     const text = await screen.findByText("Followers: 45");
+    const userName = await screen.findByText("sergij14 (Sergi Jajanidze)");
     expect(text).toBeInTheDocument();
+    expect(userName).toBeInTheDocument();
   });
 
   it("shows error alert on server error", async () => {
@@ -60,9 +62,9 @@ describe("SearchUser", () => {
   });
 
   it("removes data from dom when search term is empty", async () => {
-    typeInField(input, "{selectall}some-value");
+    typeInField(input, "{selectall}sergij14");
 
-    const text = await screen.findByText("sergij14 (sergi jaja)");
+    const text = await screen.findByText("sergij14 (Sergi Jajanidze)");
     expect(text).toBeInTheDocument();
 
     typeInField(input, "{selectall}{del}");
